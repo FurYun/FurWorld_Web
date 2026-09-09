@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup lang="ts>
+<script setup lang="ts">
 const route = useRoute()
 const path = computed(() => {
   const slug = route.params.slug as string[] | undefined
