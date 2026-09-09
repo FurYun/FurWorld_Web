@@ -16,9 +16,7 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/about': { prerender: true },
     '/join': { prerender: true },
-    '/guide': { prerender: true },
-    '/wiki': { prerender: true },
-    '/wiki/**': { prerender: true }
+    '/guide': { prerender: true }
   },
 
   compatibilityDate: '2026-06-30',
