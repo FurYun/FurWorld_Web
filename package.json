@@ -15,13 +15,13 @@
     "@iconify-json/simple-icons": "^1.2.94",
     "@nuxt/content": "^3.2.3",
     "@nuxt/ui": "^4.11.0",
-    "better-sqlite3": "^11.8.1",
+    "better-sqlite3": "^13.0.0",
     "nuxt": "^4.5.2",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",
-    "@types/better-sqlite3": "^7.6.13",
+    "@types/better-sqlite3": "^7.6.12",
     "eslint": "^10.10.0",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.11"
