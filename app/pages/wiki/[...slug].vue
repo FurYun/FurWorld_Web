@@ -10,5 +10,9 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const path = computed(() => '/wiki/' + (route.params.slug?.join('/') || ''))
+const path = computed(() => {
+  const slug = route.params.slug as string[] | undefined
+  if (!slug || slug.length === 0) return '/wiki/quick-start'
+  return '/wiki/' + slug.join('/')
+})
 </script>

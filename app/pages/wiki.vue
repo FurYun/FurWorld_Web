@@ -58,6 +58,10 @@ useHead({ title: 'Wiki - FurWorld' })
 const searchQuery = ref('')
 const selectedCategory = ref('all')
 
+const { data: articles } = await useAsyncData('wiki-articles', () =>
+  queryContent('wiki').find()
+)
+
 const categories = [
   { label: '全部', value: 'all' },
   { label: '快速入门', value: 'getting-started' },
@@ -66,53 +70,8 @@ const categories = [
   { label: '常见问题', value: 'faq' }
 ]
 
-const articles = [
-  {
-    _path: '/wiki/quick-start',
-    title: '快速入门指南',
-    description: '新玩家必读，从进服到建家的完整流程',
-    category: 'getting-started',
-    updatedAt: '2025-01-15'
-  },
-  {
-    _path: '/wiki/economy',
-    title: '经济系统',
-    description: '赚钱、花钱、转账，FurWorld 经济完全指南',
-    category: 'systems',
-    updatedAt: '2025-01-15'
-  },
-  {
-    _path: '/wiki/residence',
-    title: '领地保护',
-    description: '保护你的建筑，设置权限，管理领地',
-    category: 'systems',
-    updatedAt: '2025-01-15'
-  },
-  {
-    _path: '/wiki/slimefun',
-    title: '粘液科技入门',
-    description: '从零开始玩转 Slimefun 科技系统',
-    category: 'tech',
-    updatedAt: '2025-01-15'
-  },
-  {
-    _path: '/wiki/voice-chat',
-    title: '语音聊天',
-    description: '安装配置 Simple Voice Chat 模组',
-    category: 'systems',
-    updatedAt: '2025-01-15'
-  },
-  {
-    _path: '/wiki/faq',
-    title: '常见问题',
-    description: '连接问题、皮肤显示、性能优化等',
-    category: 'faq',
-    updatedAt: '2025-01-15'
-  }
-]
-
 const filteredArticles = computed(() => {
-  return articles.filter(article => {
+  return (articles.value || []).filter(article => {
     const matchesSearch = !searchQuery.value ||
       article.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
       article.description.toLowerCase().includes(searchQuery.value.toLowerCase())
