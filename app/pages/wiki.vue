@@ -1,8 +1,12 @@
 <template>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-16">
-      <h1 class="text-4xl font-bold mb-4">Wiki 百科</h1>
-      <p class="text-lg text-gray-500 dark:text-gray-400">玩转 FurWorld 的完整指南</p>
+      <h1 class="text-4xl font-bold mb-4">{{ wikiIndex.title || 'Wiki 百科' }}</h1>
+      <p class="text-lg text-gray-500 dark:text-gray-400">{{ wikiIndex.description || '玩转 FurWorld 的完整指南' }}</p>
+    </div>
+
+    <div class="prose dark:prose-invert max-w-none mb-12" v-if="wikiIndex.body">
+      <ContentRenderer :value="wikiIndex.body" />
     </div>
 
     <div class="mb-8">
@@ -58,8 +62,12 @@ useHead({ title: 'Wiki - FurWorld' })
 const searchQuery = ref('')
 const selectedCategory = ref('all')
 
+const { data: wikiIndex } = await useAsyncData('wiki-index', () =>
+  queryCollection('wiki').find({ path: '/wiki/index' }).first()
+)
+
 const { data: articles } = await useAsyncData('wiki-articles', () =>
-  queryCollection('wiki').all()
+  queryCollection('wiki').where({ path: { $ne: '/wiki/index' } }).all()
 )
 
 const categories = [
