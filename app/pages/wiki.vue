@@ -59,7 +59,7 @@ const searchQuery = ref('')
 const selectedCategory = ref('all')
 
 const { data: articles } = await useAsyncData('wiki-articles', () =>
-  queryContent('wiki').find()
+  queryCollection('wiki').all()
 )
 
 const categories = [
