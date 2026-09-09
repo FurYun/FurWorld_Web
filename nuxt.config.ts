@@ -14,8 +14,12 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true },
+    '/about': { prerender: true },
+    '/join': { prerender: true },
+    '/guide': { prerender: true },
+    '/wiki': { prerender: true },
     '/wiki/**': { prerender: true },
-    '/guide/**': { prerender: true },
+    '/news': { prerender: true },
     '/news/**': { prerender: true }
   },
 
